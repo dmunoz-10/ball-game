@@ -741,8 +741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e84a59de51c6554fbd0943a8ea8bbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioGameOver: {fileID: 0}
-  audioCongratulations: {fileID: 0}
   pointsSound: {fileID: 8300000, guid: 4b50e11d75b224085b3b663d42a834bb, type: 3}
   jumpSound: {fileID: 8300000, guid: 6b59f72a77a41412fa87e430c447a085, type: 3}
   deadSound: {fileID: 8300000, guid: 4d58497635131ad44823c7c69891ca43, type: 3}
@@ -1905,7 +1903,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 248352069}
-        m_MethodName: PauseGame
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2361,7 +2359,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 248352069}
-        m_MethodName: PauseGame
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

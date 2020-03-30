@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     int stars = 0; int lifes = 3;
     public bool isJump = false;
     bool pause = false;
+    bool endgame = false;
     public float velocidad = 1.0f;
     public float altitud = 100.0f;
     float totalTime = 120f;
@@ -36,14 +37,14 @@ public class PlayerController : MonoBehaviour
             CountDown();
         }
 
-        //#if UNITY_ANDROID
+        #if UNITY_ANDROID
             movVertical = joystick.Vertical * 0.12f;
             movHorizontal = joystick.Horizontal * 0.12f;
-        //#endif
-
-        // Obtengo los input del teclado
-        movVertical = Input.GetAxis("Vertical");
-        movHorizontal = Input.GetAxis("Horizontal");
+        #else
+            // Obtengo los input del teclado
+            movVertical = Input.GetAxis("Vertical");
+            movHorizontal = Input.GetAxis("Horizontal");
+        #endif
 
         // Creo mi vector de movimiento para mi player
         Vector3 movimiento = new Vector3(movHorizontal, 0.0f, movVertical);
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (collider.gameObject.name == "Final")
+        if (collider.gameObject.name == "Final" && !endgame)
         {
             FinishedGame();
         }
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestartGame()
     {
+        transform.position = startPoint.transform.position;
         totalTime = 120f;
         lifes = 3;
         stars = 0;
@@ -124,14 +126,16 @@ public class PlayerController : MonoBehaviour
         starsText.text = "00";
         rb.isKinematic = false;
         pause = false;
+        endgame = false;
     }
 
     void FinishedGame()
     {
-        PauseGame();
-        menuManager.GoToMenu(panelCongratulations);
         finalLifesText.text = "0" + lifes.ToString();
         finalStarsText.text = "0" + stars.ToString();
+        menuManager.GoToMenu(panelCongratulations);
+        endgame = true;
+        PauseGame();
     }
 
     void GameOver()
