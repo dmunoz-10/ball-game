@@ -146,10 +146,13 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        Vector3 salto = new Vector3(0, altitud, 0);
-        rb.AddForce(salto * velocidad);
-        isJump = true;
-        GetComponent<AudioSource>().clip = jumpSound;
-        GetComponent<AudioSource>().Play();
+        if (!isJump)
+        {
+            Vector3 salto = new Vector3(0, altitud, 0);
+            rb.AddForce(salto * velocidad);
+            isJump = true;
+            GetComponent<AudioSource>().clip = jumpSound;
+            GetComponent<AudioSource>().Play();
+        }
     }
 }
